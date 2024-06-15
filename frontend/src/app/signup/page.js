@@ -39,14 +39,13 @@ export default function Signup() {
         schoolName,
         grade,
       },  { headers: {
-        'Content-Type': 'application/json;charset=UTF-8'
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": 'Origin, Content-Type, X-Auth-Token'
       }});
-       console.log(response); 
-      if (response.data.success) {
+      if (response) {
         setSuccess("Signup successful! Redirecting to login...");
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
+        router.push("/login");
       } else {
         setError(response.data.message || "Signup failed");
       }

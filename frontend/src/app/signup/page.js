@@ -56,7 +56,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen mt-40 mb-20">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-2xl">
         <form onSubmit={handleSubmit} className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">

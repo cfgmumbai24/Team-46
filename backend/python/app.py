@@ -3,6 +3,7 @@ from flask_cors import CORS
 import requests
 import speech_comparison as sr
 import emails as email
+import reading_Function as rf
 
 app = Flask(__name__)
 CORS(app) 
@@ -22,6 +23,14 @@ def send_mail():
     recipients = data['recipients']
     email.send_email(content, recipients)
     return jsonify({"output": "Email sent!"})
+
+@app.route('/get_grade', methods=['POST'])
+def get_final_gradee():
+    data = request.json
+    grade = data['grade']
+    accuracy = data['accuracy']
+    ans = rf.get_final_grade(grade, accuracy)
+    return jsonify({"output": ans})
 
 if __name__ == '__main__':
     app.run(debug=True)

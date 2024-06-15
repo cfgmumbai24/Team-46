@@ -9,23 +9,24 @@ import { Button } from "@/components/ui/button";
 const Speech = dynamic(() => import('react-speech'), { ssr: false });
 
 const TextToSpeechComponent = () => {
-  // Texts for different languages
-  const texts = {
-    en: ['unit 1', 'unit 2', 'unit 3'],
-    'hi-IN': ['यूनिट 1', 'यूनिट 2', 'यूनिट 3'],
-    mr: ['युनिट 1', 'युनिट 2', 'युनिट 3']
-  };
+  // Texts for different units
+  const texts = [
+    "e w x a c", 
+    "here tall for sky bed", 
+    "My village is very big", 
+    "There is a big monkey. He lives on a tree. He likes to jump. He also likes bananas.", 
+    "A big tree stood in a garden. It was alone and lonely. One day a bird came and sat on it. The bird held a seed in its beak. It dropped the seed near the tree. A small plant grew there. Soon there were many more trees. The big tree was happy."
+  ];
 
   const [currentIndex, setCurrentIndex] = useState(0); // Index to track current item
-  const [inputText, setInputText] = useState(texts.en[currentIndex]); // Default text in English
+  const [inputText, setInputText] = useState(texts[currentIndex]); // Default text
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
   const speechRef = useRef(null);
 
   const handleButton = () => {
     setCurrentIndex((prevIndex) => {
-      const newIndex = (prevIndex + 1) % texts[selectedLanguage].length;
-      setInputText(texts[selectedLanguage][newIndex]);
+      const newIndex = (prevIndex + 1) % texts.length;
+      setInputText(texts[newIndex]);
       return newIndex;
     });
   };
@@ -36,8 +37,7 @@ const TextToSpeechComponent = () => {
         const speechSynthesis = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(inputText);
 
-        // Set language based on selectedLanguage state
-        utterance.lang = selectedLanguage;
+        utterance.lang = 'en'; // Set language to English
 
         utterance.onstart = () => {
           console.log("Speech started.");
@@ -71,11 +71,6 @@ const TextToSpeechComponent = () => {
 
   const handleChange = (e) => {
     setInputText(e.target.value);
-  };
-
-  const handleLanguageChange = (value) => {
-    setSelectedLanguage(value);
-    setInputText(texts[value][currentIndex]); // Update input text based on selected language
   };
 
   return (
@@ -130,20 +125,6 @@ const TextToSpeechComponent = () => {
             onPaused={() => console.log('Speech paused')}
             onBoundary={() => console.log('Speech boundary')}
           />
-        </div>
-        <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Select Language:
-          </label>
-          <select
-            value={selectedLanguage}
-            onChange={(e) => handleLanguageChange(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-400"
-          >
-            <option value="en">English</option>
-            <option value="hi-IN">Hindi</option>
-            <option value="mr">Marathi</option>
-          </select>
         </div>
       </div>
     </div>

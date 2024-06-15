@@ -26,8 +26,8 @@ const userSchema = new Schema({
     required: true
   },
   score: {
-    type: [Number],
-    default: []
+    type: [[Number]], // This defines a 2D array of numbers
+    default: [[]] // Default value is an empty 2D array
   },
   level: {
     type: [String],

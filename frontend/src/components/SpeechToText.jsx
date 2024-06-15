@@ -1,6 +1,7 @@
 "use client"
 import 'regenerator-runtime/runtime'; // Add this line
 import 'core-js/stable'; // Add this line
+import axios from 'axios';
 
 import React, { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
@@ -12,18 +13,22 @@ const SpeechRecognitionComponent = () => {
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
-  const [passage, setPassage] = useState(arr[0]); // Default passage is empty string
+  const [passage, setPassage] = useState(arr[0]); // Default passage is the first item in the array
+  const [output, setOutput] = useState([]);
   const router = useRouter();
 
   if (!browserSupportsSpeechRecognition) {
     return <div>Your browser does not support speech recognition.</div>;
   }
-  const handleClick = () =>{
+
+  const handleClick = () => {
+    resetTranscript();
     if (arr.length === 0) {
-      router.push('/dashboard');
+      router.push('/user-dashboard');
     } else {
       const newArray = [...arr];
       const firstElement = newArray.shift(); // Pop the first element
+      console.log("first elem:"+ firstElement);
       setArray(newArray); // Update the array state
       setPassage(firstElement); // Update the passage state
     }
@@ -37,6 +42,19 @@ const SpeechRecognitionComponent = () => {
   const handleStop = () => {
     SpeechRecognition.stopListening();
     setIsListening(false);
+    axios.post('http://127.0.0.1:5000/chat', {
+      "original_text": passage,
+      "user_text": transcript
+    })
+      .then(response => {
+        console.log('Data sent successfully:', response.data);
+        setOutput(prevOutput => [...prevOutput, response.data.answer.split('%')[0]]);
+        console.log("arr" + output);
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error sending data:', error);
+      });
   };
 
   const handleReset = () => {
@@ -52,7 +70,7 @@ const SpeechRecognitionComponent = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className='items-center justify-center text-center mx-40 my-4'>
-      <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4">
           <LanguageDropdown selectedLanguage={selectedLanguage} onChange={handleLanguageChange} />
         </div>
         <h2 className='text-2xl font-bold mb-4'>Read this: </h2>

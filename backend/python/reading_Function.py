@@ -10,11 +10,15 @@ def calculate_efficiency(actual_text, transcribed_text):
     actual_text = actual_text.lower()
     transcribed_text = transcribed_text.lower()
     
-    # Calculate the number of matching characters
-    match_count = sum(a == t for a, t in zip(actual_text, transcribed_text))
+    # Split texts into words for comparison
+    actual_words = actual_text.split()
+    transcribed_words = transcribed_text.split()
     
-    # Calculate efficiency percentage based on the length of actual_text
-    efficiency = (match_count / len(actual_text)) * 100
+    # Calculate the number of matching words
+    match_count = sum(a == t for a, t in zip(actual_words, transcribed_words))
+    
+    # Calculate efficiency percentage based on the length of actual_words
+    efficiency = (match_count / len(actual_words)) * 100 if actual_words else 0
     
     return efficiency
 
@@ -43,7 +47,7 @@ def get_final_grade(class_level, efficiencies):
 
     # Prepare a list to store results
     results = []
-    highest_level_passed = ""
+    highest_level_passed = "Beginner"
 
     # Check each sub-level to see if the student passes
     for sub_level in sub_levels:
@@ -63,7 +67,10 @@ def get_final_grade(class_level, efficiencies):
                     highest_level_passed = sub_level
                 break
 
-    return highest_level_passed, "\n".join(results)
+    if highest_level_passed == "Beginner":
+        return highest_level_passed, ""  # Do not include grades if Beginner
+    else:
+        return highest_level_passed, "\n".join(results)
 
 # Example usage:
 
@@ -72,7 +79,7 @@ efficiencies_class_1 = {
     "Letters": 85,
     "Words": 88,
     "Sentences": 75,
-    "Paragraphs": 0,
+    "Paragraphs": 65,
     "Story": 0
 }
 
@@ -95,7 +102,10 @@ efficiencies_class_3 = {
 # Function to print grades for each class level
 def print_grades(class_level, efficiencies):
     highest_level_passed, grades = get_final_grade(class_level, efficiencies)
-    print(f"Highest level passed for {class_level}: {highest_level_passed}\n\nGrades:\n{grades}\n\n")
+    if highest_level_passed == "Beginner":
+        print(f"Highest level passed for {class_level}: Beginner\n")
+    else:
+        print(f"Highest level passed is {highest_level_passed}\n\nGrades:\n{grades}\n\n")
 
 # Print grades for each class level
 print_grades("Class 1", efficiencies_class_1)

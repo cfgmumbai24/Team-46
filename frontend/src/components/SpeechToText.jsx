@@ -1,18 +1,32 @@
+"use client"
 import 'regenerator-runtime/runtime'; // Add this line
 import 'core-js/stable'; // Add this line
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation';
 
 const SpeechRecognitionComponent = () => {
+  const [arr, setArray] = useState(["item1", "item2", "item3", "item4", "item5", "item6"]);
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
-  const [passage, setPassage] = useState(''); // Default passage is empty string
+  const [passage, setPassage] = useState(arr[0]); // Default passage is empty string
+  const router = useRouter();
 
   if (!browserSupportsSpeechRecognition) {
     return <div>Your browser does not support speech recognition.</div>;
+  }
+  const handleClick = () =>{
+    if (arr.length === 0) {
+      router.push('/dashboard');
+    } else {
+      const newArray = [...arr];
+      const firstElement = newArray.shift(); // Pop the first element
+      setArray(newArray); // Update the array state
+      setPassage(firstElement); // Update the passage state
+    }
   }
 
   const handleStart = () => {
@@ -57,6 +71,7 @@ const SpeechRecognitionComponent = () => {
         </div>
         <p>{transcript}</p>
       </div>
+      <Button className="m-4 ml-8" onClick={handleClick}>Next</Button>
     </div>
   );
 };

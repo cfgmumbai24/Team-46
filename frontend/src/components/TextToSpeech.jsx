@@ -1,5 +1,9 @@
+"use client"
+import 'regenerator-runtime/runtime'; // Add this line
+import 'core-js/stable'; // Add this line
 import React, { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { Button } from "@/components/ui/button";
 
 // Dynamically import the Speech component to prevent SSR issues
 const Speech = dynamic(() => import('react-speech'), { ssr: false });
@@ -7,22 +11,31 @@ const Speech = dynamic(() => import('react-speech'), { ssr: false });
 const TextToSpeechComponent = () => {
   // Texts for different languages
   const texts = {
-    en: "Chhatrapati Shivaji Maharaj was a great warrior king and a visionary leader in Indian history. Born in 1630, he founded the Maratha Empire and played a crucial role in resisting the Mughal Empire's expansion in India. Shivaji Maharaj is renowned for his military tactics, innovative forts, and administrative reforms.",
-    'hi-IN': "छत्रपती शिवाजी महाराज भारतीय इतिहास में एक महान योद्धा राजा और दृष्टिपटली नेता थे। 1630 में जन्मे, उन्होंने मराठा साम्राज्य की स्थापना की और भारत में मुग़ल साम्राज्य के विस्तार का सख्त विरोध किया। शिवाजी महाराज अपनी सैन्य रणनीतियों, नवाचारी किल्लों और प्रशासनिक सुधारों के लिए प्रसिद्ध हैं। उन्होंने स्वराज्य के विचार का प्रचार किया, जिसका अर्थ स्वाधीनता और स्वतंत्रता है, और धार्मिक सहिष्णुता के पक्षधर थे। ",
-    mr: "छत्रपती शिवाजी महाराज हे भारतीय इतिहासातील एक महान योद्धा राजा आणि दृष्टिपटलेले नेते होते. 1630 मध्ये त्यांचे जन्म झाले, त्यांनी मराठा साम्राज्याची स्थापना केली आणि भारतात मुग़ल साम्राज्याच्या विस्तार का सख्त विरोध केला। शिवाजी महाराज हे आपल्या सैन्य युद्धतंत्रांचे, नवीन किल्ल्यांचे आणि प्रशासनिक सुधारणांचे प्रसिद्ध आहेत. त्यांनी स्वराज्याच्या आणि स्वतंत्रतेच्या अवधारणेचा प्रचार केला होता, ज्याचा अर्थ स्वाधीनता आणि स्वतंत्रता आहे, आणि धार्मिक सहिष्णुतेच्या पक्षपाती होते. "
+    en: ['unit 1', 'unit 2', 'unit 3'],
+    'hi-IN': ['यूनिट 1', 'यूनिट 2', 'यूनिट 3'],
+    mr: ['युनिट 1', 'युनिट 2', 'युनिट 3']
   };
 
-  const [inputText, setInputText] = useState(texts.en); // Default text in English
+  const [currentIndex, setCurrentIndex] = useState(0); // Index to track current item
+  const [inputText, setInputText] = useState(texts.en[currentIndex]); // Default text in English
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
   const speechRef = useRef(null);
+
+  const handleButton = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % texts[selectedLanguage].length;
+      setInputText(texts[selectedLanguage][newIndex]);
+      return newIndex;
+    });
+  };
 
   const handleSpeak = () => {
     if (inputText.trim() !== '') {
       try {
         const speechSynthesis = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(inputText);
-        
+
         // Set language based on selectedLanguage state
         utterance.lang = selectedLanguage;
 
@@ -62,7 +75,7 @@ const TextToSpeechComponent = () => {
 
   const handleLanguageChange = (value) => {
     setSelectedLanguage(value);
-    setInputText(texts[value]); // Update input text based on selected language
+    setInputText(texts[value][currentIndex]); // Update input text based on selected language
   };
 
   return (
@@ -101,6 +114,9 @@ const TextToSpeechComponent = () => {
           >
             Stop
           </button>
+        </div>
+        <div className='flex justify-center'>
+          <Button onClick={handleButton}>Next</Button>
         </div>
         {isSpeaking && (
           <p className="text-lg font-bold text-gray-800 mb-4">Speaking...</p>

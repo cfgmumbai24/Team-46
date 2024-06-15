@@ -99,14 +99,11 @@ efficiencies_class_3 = {
     "Story": 90
 }
 
-# Function to print grades for each class level
-def print_grades(class_level, efficiencies):
-    highest_level_passed, grades = get_final_grade(class_level, efficiencies)
-    if highest_level_passed == "Beginner":
-        print(f"Highest level passed for {class_level}: Beginner\n")
-    else:
-        print(f"Highest level passed is {highest_level_passed}\n\nGrades:\n{grades}\n\n")
+# # Function to print grades for each class level
+# def print_grades(class_level, efficiencies):
+#     highest_level_passed, grades = get_final_grade(class_level, efficiencies)
+#     print(f"Highest level passed for {class_level}: {highest_level_passed}\n\nGrades:\n{grades}\n\n")
 
-# Print grades for each class level
-print_grades("Class 1", efficiencies_class_1)
+# # Print grades for each class level
+# print_grades("Class 1", efficiencies_class_1)
 

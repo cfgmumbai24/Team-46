@@ -13,6 +13,7 @@ def product_info():
     data = request.json
     original_text = data['original_text']
     user_text =data['user_text']
+    print(original_text, user_text)
     output = sr.get_answer(original_text, user_text)
     return jsonify({"answer": output})
 
@@ -29,6 +30,7 @@ def get_final_gradee():
     data = request.json
     grade = data['grade']
     accuracy = data['accuracy']
+    print(grade, accuracy)
     ans = rf.get_final_grade(grade, accuracy)
     return jsonify({"output": ans})
 

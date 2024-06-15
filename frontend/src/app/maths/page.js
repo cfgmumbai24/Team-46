@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 
@@ -21,24 +21,29 @@ export default function Component() {
     q15: '',
   });
 
-  const [score, setScore] = useState(null);
+  const [scores, setScores] = useState({
+    addition: 0,
+    subtraction: 0,
+    multiplication: 0,
+    division: 0,
+  });
 
   const correctAnswers = {
-    q1: 8,
-    q2: 5,
-    q3: 24,
-    q4: 6,
-    q5: 13,
-    q6: 6,
-    q7: 24,
-    q8: 6,
-    q9: 13,
-    q10: 5,
-    q11: 18,
-    q12: 6,
-    q13: 13,
-    q14: 6,
-    q15: 16,
+    q1: { answer: 8, category: 'addition' },
+    q2: { answer: 19, category: 'addition' },
+    q3: { answer: 10, category: 'addition' },
+    q4: { answer: 21, category: 'addition' },
+    q5: { answer: 5, category: 'subtraction' },
+    q6: { answer: 6, category: 'subtraction' },
+    q7: { answer: 5, category: 'subtraction' },
+    q8: { answer: 20, category: 'subtraction' },
+    q9: { answer: 42, category: 'multiplication' },
+    q10: { answer: 24, category: 'multiplication' },
+    q11: { answer: 18, category: 'multiplication' },
+    q12: { answer: 36, category: 'multiplication' },
+    q13: { answer: 2, category: 'division' },
+    q14: { answer: 3, category: 'division' },
+    q15: { answer: 1, category: 'division' },
   };
 
   const handleChange = (e) => {
@@ -49,13 +54,20 @@ export default function Component() {
   };
 
   const handleSubmit = () => {
-    let score = 0;
+    const newScores = {
+      addition: 0,
+      subtraction: 0,
+      multiplication: 0,
+      division: 0,
+    };
+
     for (let key in correctAnswers) {
-      if (parseInt(answers[key]) === correctAnswers[key]) {
-        score += 1;
+      if (parseInt(answers[key]) === correctAnswers[key].answer) {
+        newScores[correctAnswers[key].category] += 1;
       }
     }
-    setScore(score);
+
+    setScores(newScores);
   };
 
   return (
@@ -68,19 +80,19 @@ export default function Component() {
             <Input name="q1" type="number" className="w-20" onChange={handleChange} value={answers.q1} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">2. 12 - 7 = ?</span>
+            <span className="text-lg font-medium">2. 12 + 7 = ?</span>
             <Input name="q2" type="number" className="w-20" onChange={handleChange} value={answers.q2} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">3. 4 x 6 = ?</span>
+            <span className="text-lg font-medium">3. 4 + 6 = ?</span>
             <Input name="q3" type="number" className="w-20" onChange={handleChange} value={answers.q3} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">4. 18 ÷ 3 = ?</span>
+            <span className="text-lg font-medium">4. 18 + 3 = ?</span>
             <Input name="q4" type="number" className="w-20" onChange={handleChange} value={answers.q4} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">5. 9 + 4 = ?</span>
+            <span className="text-lg font-medium">5. 9 - 4 = ?</span>
             <Input name="q5" type="number" className="w-20" onChange={handleChange} value={answers.q5} />
           </div>
         </div>
@@ -90,19 +102,19 @@ export default function Component() {
             <Input name="q6" type="number" className="w-20" onChange={handleChange} value={answers.q6} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">7. 3 x 8 = ?</span>
+            <span className="text-lg font-medium">7. 13 - 8 = ?</span>
             <Input name="q7" type="number" className="w-20" onChange={handleChange} value={answers.q7} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">8. 24 ÷ 4 = ?</span>
+            <span className="text-lg font-medium">8. 24 - 4 = ?</span>
             <Input name="q8" type="number" className="w-20" onChange={handleChange} value={answers.q8} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">9. 7 + 6 = ?</span>
+            <span className="text-lg font-medium">9. 7 x 6 = ?</span>
             <Input name="q9" type="number" className="w-20" onChange={handleChange} value={answers.q9} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">10. 13 - 8 = ?</span>
+            <span className="text-lg font-medium">10. 3 x 8 = ?</span>
             <Input name="q10" type="number" className="w-20" onChange={handleChange} value={answers.q10} />
           </div>
         </div>
@@ -112,19 +124,19 @@ export default function Component() {
             <Input name="q11" type="number" className="w-20" onChange={handleChange} value={answers.q11} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">12. 36 ÷ 6 = ?</span>
+            <span className="text-lg font-medium">12. 6 x 6 = ?</span>
             <Input name="q12" type="number" className="w-20" onChange={handleChange} value={answers.q12} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">13. 8 + 5 = ?</span>
+            <span className="text-lg font-medium">13. 10 ÷ 5 = ?</span>
             <Input name="q13" type="number" className="w-20" onChange={handleChange} value={answers.q13} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">14. 15 - 9 = ?</span>
+            <span className="text-lg font-medium">14. 15 ÷ 5 = ?</span>
             <Input name="q14" type="number" className="w-20" onChange={handleChange} value={answers.q14} />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-medium">15. 4 x 4 = ?</span>
+            <span className="text-lg font-medium">15. 4 ÷ 4 = ?</span>
             <Input name="q15" type="number" className="w-20" onChange={handleChange} value={answers.q15} />
           </div>
         </div>
@@ -135,9 +147,12 @@ export default function Component() {
       >
         Submit
       </button>
-      {score !== null && (
+      {Object.values(scores).some(score => score > 0) && (
         <div className="mt-4 text-xl font-semibold">
-          You got {score} out of 15 correct!
+          <p>You got {scores.addition} out of 4 correct in Addition!</p>
+          <p>You got {scores.subtraction} out of 4 correct in Subtraction!</p>
+          <p>You got {scores.multiplication} out of 4 correct in Multiplication!</p>
+          <p>You got {scores.division} out of 3 correct in Division!</p>
         </div>
       )}
     </div>

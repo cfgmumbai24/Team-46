@@ -1,3 +1,6 @@
+import 'regenerator-runtime/runtime'; // Add this line
+import 'core-js/stable'; // Add this line
+
 import React, { useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 

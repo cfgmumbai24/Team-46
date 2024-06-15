@@ -10,6 +10,7 @@ export default function Component() {
             <TableHead className="text-bold text-lg">Levels</TableHead>
             <TableHead className="text-bold text-lg">Score</TableHead>
             <TableHead className="text-bold text-lg">Remedies</TableHead>
+            <TableHead className="text-bold text-lg">Links to Videos</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -24,6 +25,9 @@ export default function Component() {
                 <li>Seek tutoring for areas of weakness</li>
               </ul>
             </TableCell>
+            <TableCell>
+                lorem32
+            </TableCell>
           </TableRow>
           <TableRow className="bg-gray-100 dark:bg-gray-800">
             <TableCell className="font-medium">2</TableCell>
@@ -35,6 +39,9 @@ export default function Component() {
                 <li>Attend extra lab sessions</li>
                 <li>Review study materials more thoroughly</li>
               </ul>
+            </TableCell>
+            <TableCell>
+                lorem32
             </TableCell>
           </TableRow>
           <TableRow>
@@ -48,6 +55,9 @@ export default function Component() {
                 <li>Improve vocabulary and grammar skills</li>
               </ul>
             </TableCell>
+            <TableCell>
+                lorem32
+            </TableCell>
           </TableRow>
           <TableRow className="bg-gray-100 dark:bg-gray-800">
             <TableCell className="font-medium">4</TableCell>
@@ -59,6 +69,9 @@ export default function Component() {
                 <li>Attend office hours for clarification</li>
                 <li>Practice answering sample questions</li>
               </ul>
+            </TableCell>
+            <TableCell>
+                lorem32
             </TableCell>
           </TableRow>
         </TableBody>

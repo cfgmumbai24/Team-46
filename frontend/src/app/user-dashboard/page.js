@@ -5,6 +5,7 @@ import { ResponsiveLine } from "@nivo/line"
 import { ResponsiveBar } from "@nivo/bar"
 import { ResponsivePie } from "@nivo/pie"
 import { ResponsiveScatterPlot } from "@nivo/scatterplot"
+import Link from "next/link"
 
 export default function Component() {
   return (
@@ -35,12 +36,25 @@ export default function Component() {
           </CardContent>
         </Card>
         <Card className="col-span-1 lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Data Breakdown</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <PieChart className="aspect-[3/2]" />
-          </CardContent>
+        <div className="flex flex-col items-center justify-center h-full gap-4">
+            <h2 className="text-4xl font-medium">Analysis and Retest</h2>
+            <div className="flex flex-row items-center justify-center gap-4">
+              <Link
+                href="/analysis"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                prefetch={false}
+              >
+                Analysis
+              </Link>
+              <Link
+                href="/choice"
+                className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+                prefetch={false}
+              >
+                Retest
+              </Link>
+              </div>
+            </div>
         </Card>
         <Card>
           <CardHeader>

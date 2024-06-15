@@ -20,7 +20,7 @@ const SpeechRecognitionComponent = () => {
   }
   const handleClick = () =>{
     if (arr.length === 0) {
-      router.push('/dashboard');
+      router.push('/user-dashboard');
     } else {
       const newArray = [...arr];
       const firstElement = newArray.shift(); // Pop the first element

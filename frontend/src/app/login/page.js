@@ -25,12 +25,16 @@ export default function Signup() {
       const response = await axios.post("http://127.0.0.1:8000/api/user/login", {
         email,
         password,
-      });
+      } ,{ headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": 'Origin, Content-Type, X-Auth-Token'
+      }});
       console.log(response);
-      if (response.data.success) {
+      if (response.data) {
         setSuccess("Signup successful! Redirecting to login...");
         setTimeout(() => {
-          router.push("/login");
+          router.push("/speech");
         }, 2000);
       } else {
         setError(response.data.message || "Signup failed");

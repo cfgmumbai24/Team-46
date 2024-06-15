@@ -1,9 +1,9 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function Login() {
   return (
@@ -32,7 +32,7 @@ export default function Login() {
                 <Link
                   href="/forgot-password"
                   className="ml-auto inline-block text-sm underline"
-                  >
+                >
                   Forgot your password?
                 </Link>
               </div>
@@ -54,5 +54,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -66,14 +66,14 @@ const TextToSpeechComponent = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="text-center mx-40 my-4">
-        <h2 className="text-2xl font-bold mb-4">Text to Speech Converter</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="text-center mx-4 my-4 w-full max-w-5xl">
+        <h2 className="text-2xl font-bold mb-4">Correct Answer</h2>
         <textarea
           value={inputText}
           onChange={handleChange}
           rows={Math.ceil(inputText.length / 50)} // Adjust rows based on text length
-          className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-400"
+          className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-400 resize-none"
           placeholder="Enter text to speak..."
         />
       </div>

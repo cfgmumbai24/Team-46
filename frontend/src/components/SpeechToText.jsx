@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const SpeechRecognitionComponent = () => {
   const [arr, setArray] = useState(["item1", "item2", "item3", "item4", "item5", "item6"]);
@@ -18,8 +19,16 @@ const SpeechRecognitionComponent = () => {
   if (!browserSupportsSpeechRecognition) {
     return <div>Your browser does not support speech recognition.</div>;
   }
-  const handleClick = () =>{
+  const handleClick = async () =>{
     if (arr.length === 0) {
+      const response = await axios.post("http://localhost:8000/api/update", {
+        newLevel: "string",
+        newScore: arr
+      },  { headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": 'Origin, Content-Type, X-Auth-Token'
+      }});
       router.push('/user-dashboard');
     } else {
       const newArray = [...arr];

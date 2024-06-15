@@ -10,6 +10,7 @@ const userUpdateRouter = require('./routes/update');
 const cookieParser = require('cookie-parser');
 const checkTokenMiddleware = require('./middleware/auth');
 const validateToken = require('./middleware/token');
+const User = require('./models/user');
 
 mongoose
     .connect(process.env.MONGO_URI, {useNewUrlParser:true})
@@ -24,7 +25,14 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-
+app.get('/api/allusers', async (req, res) => {
+  try {
+    const users = await User.find(); // Retrieve all users from the database
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'Error retrieving users', error: err });
+  }
+});
 app.use("/api/user",userRouter);
 app.use("/api/update",validateToken,userUpdateRouter);
 app.use((req, res, next) => {
@@ -33,6 +41,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

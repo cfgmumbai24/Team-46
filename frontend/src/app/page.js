@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { InfiniteMovingCardsDemo } from "@/components/MovingCards";
+import { InfiniteMovingCards } from "@/components/MovingCards";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -426,7 +426,7 @@ export default function GlobeDemo() {
               Vowels of the People Association (VOPA)
             </h2>
             <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-              Ensuring Right to Quality Education. :)
+            Elevating voices and empowering souls worldwide through the essence of Right to Quality Education. 
             </p>
           </motion.div>
           <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
@@ -443,7 +443,7 @@ export default function GlobeDemo() {
           Start Test
         </Button>
       </div>
-      <InfiniteMovingCardsDemo />
+      <InfiniteMovingCards />
     </div>
   );
 }

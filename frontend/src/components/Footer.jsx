@@ -42,7 +42,7 @@ const Footer = () => {
       </div>
 
       <p className="text-lg text-secondary-foreground p-6 text-center">
-        Made with care, Team _____ ❤️.
+        Made with care, Team We7 ❤️.
       </p>
     </div>
   );

@@ -22,7 +22,7 @@ def get_answer(original_text, our_text):
     ans = chain.invoke({"text": str})
     return ans.content
 
-ans = get_answer("hello im a cat", "hello")
-print(ans)
+# ans = get_answer("hello im a cat", "hello")
+# print(ans)
 
     

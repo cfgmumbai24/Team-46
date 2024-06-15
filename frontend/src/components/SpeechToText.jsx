@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 
 const SpeechRecognitionComponent = () => {
-  const [arr, setArray] = useState(["item1", "item2", "item3", "item4", "item5", "item6"]);
+  const [arr, setArray] = useState(["e w x a c", "here tall for sky bed", "My village is very big", "There is a big monkey.He lives on a tree.He likes to jump.He also likes the bananas ", "A big tree stood in a garden . It was alone and lonely. One day a bird came and sat on it.The bird held a seed in his beak.It dropped the seed near the tree. A small plant grew there. Soon there were many more trees.The big tree was happy."]);
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English

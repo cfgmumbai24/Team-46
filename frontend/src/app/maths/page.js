@@ -28,6 +28,8 @@ export default function Component() {
     division: 0,
   });
 
+  const [results, setResults] = useState([]);
+
   const correctAnswers = {
     q1: { answer: 8, category: 'addition' },
     q2: { answer: 19, category: 'addition' },
@@ -60,14 +62,54 @@ export default function Component() {
       multiplication: 0,
       division: 0,
     };
-
+  
+    const attemptedQuestions = {
+      addition: 0,
+      subtraction: 0,
+      multiplication: 0,
+      division: 0,
+    };
+  
+    // Calculate scores and attempted questions
     for (let key in correctAnswers) {
-      if (parseInt(answers[key]) === correctAnswers[key].answer) {
-        newScores[correctAnswers[key].category] += 1;
+      if (answers[key] !== '') { // Question was attempted
+        attemptedQuestions[correctAnswers[key].category] += 1;
+  
+        if (parseInt(answers[key]) === correctAnswers[key].answer) {
+          newScores[correctAnswers[key].category] += 1;
+        }
       }
     }
-
+  
+    // Calculate not attempted questions
+    const totalQuestions = {
+      addition: 4,
+      subtraction: 4,
+      multiplication: 4,
+      division: 3,
+    };
+  
+    const notAttemptedQuestions = {
+      addition: totalQuestions.addition - attemptedQuestions.addition,
+      subtraction: totalQuestions.subtraction - attemptedQuestions.subtraction,
+      multiplication: totalQuestions.multiplication - attemptedQuestions.multiplication,
+      division: totalQuestions.division - attemptedQuestions.division,
+    };
+  
+    // Calculate accuracy based on attempted questions
+    const newResults = ['addition', 'subtraction', 'multiplication', 'division'].map(category => {
+      const accuracy = (newScores[category] / attemptedQuestions[category]) * 100 || 0;
+      return {
+        category,
+        attempted: attemptedQuestions[category],
+        notAttempted: notAttemptedQuestions[category],
+        accuracy: accuracy.toFixed(2),
+      };
+    });
+  
     setScores(newScores);
+    setResults(newResults);
+    
   };
 
   return (
@@ -147,14 +189,21 @@ export default function Component() {
       >
         Submit
       </button>
-      {Object.values(scores).some(score => score > 0) && (
-        <div className="mt-4 text-xl font-semibold">
-          <p>You got {scores.addition} out of 4 correct in Addition!</p>
-          <p>You got {scores.subtraction} out of 4 correct in Subtraction!</p>
-          <p>You got {scores.multiplication} out of 4 correct in Multiplication!</p>
-          <p>You got {scores.division} out of 3 correct in Division!</p>
-        </div>
-      )}
+      {results.length > 0 && (
+  <div className="mt-4 text-xl font-semibold">
+    {results.map(result => (
+      <div key={result.category}>
+        <p>Category: {result.category.charAt(0).toUpperCase() + result.category.slice(1)}</p>
+        <p>Attempted: {result.attempted}</p>
+        <p>Not Attempted: {result.notAttempted}</p>
+        <p>Accuracy: {result.accuracy}%</p>
+        <p>{result.accuracy >= 80 ? 'Passed' : 'Failed'} {result.category.charAt(0).toUpperCase() + result.category.slice(1)}</p>
+      
+        <hr className="my-4" />
+      </div>
+    ))}
+  </div>
+)}
     </div>
   );
 }

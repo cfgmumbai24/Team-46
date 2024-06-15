@@ -23,7 +23,27 @@ const SpeechRecognitionComponent = () => {
 
   const handleClick = () => {
     resetTranscript();
-    if (arr.length === 0) {
+    if (arr.length === 0 || output[arr.length-1]<80) {
+      axios.post('http://127.0.0.1:5000/get_grade', {
+      "grade": "Class 1",
+      "accuracy": {
+      "Letters": arr[0],
+      "Words": arr[1],
+      "Sentences": arr[2],
+      "Paragraphs": arr[3],
+      "Story": arr[4]
+      }
+      })
+        .then(response => {
+          console.log('Data sent successfully:', response.data);
+          console.log("Data "+response.data.output[0])
+          
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error sending data:', error);
+        });
+
       router.push('/user-dashboard');
     } else {
       const newArray = [...arr];

@@ -34,7 +34,13 @@ export default function Signup() {
       if (response.data) {
         setSuccess("Signup successful! Redirecting to login...");
         setTimeout(() => {
-          router.push("/speech");
+          if(email === "admin@gmail.com")
+            {
+              router.push("/admin");
+            }
+            else{
+          router.push("/choice");
+            }
         }, 2000);
       } else {
         setError(response.data.message || "Signup failed");
@@ -49,7 +55,7 @@ export default function Signup() {
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-2xl">
         <form onSubmit={handleSubmit} className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Signup</h1>
+            <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your email below to sign up for an account
             </p>

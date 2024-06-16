@@ -128,7 +128,7 @@ export default function Component() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
 
 function BarChart({ data, ...props }) {
@@ -251,6 +251,7 @@ function DotChart({ data, ...props }) {
       />
     </div>
   );
+  
 }
 
 function LineChart({ data, ...props }) {

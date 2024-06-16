@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 
 const SpeechRecognitionComponent = () => {
-  const [arr, setArray] = useState(["item1", "item2", "item3", "item4", "item5", "item6"]);
+  const [arr, setArray] = useState(["e w x a c", "here tall for sky bed", "My village is very big", "There is a big monkey.He lives on a tree.He likes to jump.He also likes the bananas ", "A big tree stood in a garden . It was alone and lonely. One day a bird came and sat on it.The bird held a seed in his beak.It dropped the seed near the tree. A small plant grew there. Soon there were many more trees.The big tree was happy."]);
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
@@ -24,24 +24,44 @@ const SpeechRecognitionComponent = () => {
   const handleClick = async () => {
     resetTranscript();
     if (arr.length === 0) {
-      const response = await axios.post("http://localhost:8000/api/update", {
-        newLevel: "string",
-        newScore: output
-      },  { headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": 'Origin, Content-Type, X-Auth-Token'
-      }});
-      router.push('/user-dashboard');
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/get_grade', {
+          grade: 'Class 1',
+          accuracy: {
+            Letters: arr[0],
+            Words: arr[1],
+            Sentences: arr[2],
+            Paragraphs: arr[3],
+            Story: arr[4]
+          }
+        });
+        
+        const { output } = response.data;
+  
+        await axios.post('http://localhost:8000/api/update', {
+          newLevel: 'string',
+          newScore: output
+        }, {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8'
+          }
+        });
+  
+        router.push('/user-dashboard');
+        console.log('Data sent successfully:', response.data);
+        console.log('Data:', response.data.output[0]);
+  
+      } catch (error) {
+        console.error('Error sending data:', error);
+      }
     } else {
       const newArray = [...arr];
       const firstElement = newArray.shift(); // Pop the first element
-      console.log("first elem:"+ firstElement);
+      console.log('First element:', firstElement);
       setArray(newArray); // Update the array state
       setPassage(firstElement); // Update the passage state
     }
-  }
-
+  };
   const handleStart = () => {
     SpeechRecognition.startListening({ continuous: true, language: selectedLanguage });
     setIsListening(true);

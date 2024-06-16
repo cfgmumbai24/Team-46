@@ -1,4 +1,11 @@
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
 
 export default function Component() {
   return (
@@ -6,7 +13,7 @@ export default function Component() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-bold text-lg" >Tests</TableHead>
+            <TableHead className="text-bold text-lg">Tests</TableHead>
             <TableHead className="text-bold text-lg">Levels</TableHead>
             <TableHead className="text-bold text-lg">Score</TableHead>
             <TableHead className="text-bold text-lg">Remedies</TableHead>
@@ -26,7 +33,27 @@ export default function Component() {
               </ul>
             </TableCell>
             <TableCell>
-                lorem32
+              lorem32<br></br>
+              <a
+                href="https://www.youtube.com/watch?v=hq3yfQnllfQ&pp=ygUKYWJjIHZpZGVvIA%3D%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 1
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=d0Hq0fjT3r4&pp=ygUXd29yZCBzb25nIGZvciBjaGlsZHJlbiA%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 2
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=0Wrv_ZviMEc&pp=ygUZc2VudGFuY2UgZm9ybWF0aW9uIHNvbmdzIA%3D%3D "
+                style={{ color: "red" }}
+              >
+                Lecture 3
+              </a>
             </TableCell>
           </TableRow>
           <TableRow className="bg-gray-100 dark:bg-gray-800">
@@ -41,7 +68,27 @@ export default function Component() {
               </ul>
             </TableCell>
             <TableCell>
-                lorem32
+              lorem32<br></br>
+              <a
+                href="https://www.youtube.com/watch?v=hq3yfQnllfQ&pp=ygUKYWJjIHZpZGVvIA%3D%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 1
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=d0Hq0fjT3r4&pp=ygUXd29yZCBzb25nIGZvciBjaGlsZHJlbiA%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 2
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=0Wrv_ZviMEc&pp=ygUZc2VudGFuY2UgZm9ybWF0aW9uIHNvbmdzIA%3D%3D "
+                style={{ color: "red" }}
+              >
+                Lecture 3
+              </a>
             </TableCell>
           </TableRow>
           <TableRow>
@@ -56,7 +103,27 @@ export default function Component() {
               </ul>
             </TableCell>
             <TableCell>
-                lorem32
+              lorem32<br></br>
+              <a
+                href="https://www.youtube.com/watch?v=hq3yfQnllfQ&pp=ygUKYWJjIHZpZGVvIA%3D%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 1
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=d0Hq0fjT3r4&pp=ygUXd29yZCBzb25nIGZvciBjaGlsZHJlbiA%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 2
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=0Wrv_ZviMEc&pp=ygUZc2VudGFuY2UgZm9ybWF0aW9uIHNvbmdzIA%3D%3D "
+                style={{ color: "red" }}
+              >
+                Lecture 3
+              </a>
             </TableCell>
           </TableRow>
           <TableRow className="bg-gray-100 dark:bg-gray-800">
@@ -71,11 +138,31 @@ export default function Component() {
               </ul>
             </TableCell>
             <TableCell>
-                lorem32
+              lorem32<br></br>
+              <a
+                href="https://www.youtube.com/watch?v=hq3yfQnllfQ&pp=ygUKYWJjIHZpZGVvIA%3D%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 1
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=d0Hq0fjT3r4&pp=ygUXd29yZCBzb25nIGZvciBjaGlsZHJlbiA%3D"
+                style={{ color: "red" }}
+              >
+                Lecture 2
+              </a>
+              <br></br>
+              <a
+                href="https://www.youtube.com/watch?v=0Wrv_ZviMEc&pp=ygUZc2VudGFuY2UgZm9ybWF0aW9uIHNvbmdzIA%3D%3D "
+                style={{ color: "red" }}
+              >
+                Lecture 3
+              </a>
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

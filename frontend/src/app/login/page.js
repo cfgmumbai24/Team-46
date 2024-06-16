@@ -34,7 +34,13 @@ export default function Signup() {
       if (response.data) {
         setSuccess("Signup successful! Redirecting to login...");
         setTimeout(() => {
+          if(email === "admin@gmail.com")
+            {
+              router.push("/admin");
+            }
+            else{
           router.push("/choice");
+            }
         }, 2000);
       } else {
         setError(response.data.message || "Signup failed");

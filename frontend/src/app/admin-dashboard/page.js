@@ -1,4 +1,5 @@
-import Link from "next/link"
+import Link from "next/link";
+import axios from "axios";
 import {
   Activity,
   ArrowUpRight,
@@ -9,22 +10,18 @@ import {
   Package2,
   Search,
   Users,
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,9 +29,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Table,
   TableBody,
@@ -42,7 +39,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
+
+let info = axios
+  .get("http://localhost:3000/admin-dashboard")
+  .then(function (response) {
+    console.log(response);
+    return response;
+  });
+console.log(info.Parameters);
 
 export default function Dashboard() {
   return (
@@ -82,13 +87,16 @@ export default function Dashboard() {
           <Card x-chunk="dashboard-01-chunk-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Total Revenue
+                Total Students
               </CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold">45,231</div>
+              <p
+                style={{ color: "red" }}
+                className="text-xs text-muted-foreground"
+              >
                 +20.1% from last month
               </p>
             </CardContent>
@@ -96,52 +104,61 @@ export default function Dashboard() {
           <Card x-chunk="dashboard-01-chunk-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Subscriptions
+                Students in First Standard
               </CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+2350</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold">2350</div>
+              <p
+                style={{ color: "red" }}
+                className="text-xs text-muted-foreground"
+              >
                 +180.1% from last month
               </p>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Students in Second Standard
+              </CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+12,234</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold">12,234</div>
+              <p
+                style={{ color: "red" }}
+                className="text-xs text-muted-foreground"
+              >
                 +19% from last month
               </p>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-3">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Students in Third Standard
+              </CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+573</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold">573</div>
+              <p
+                style={{ color: "red" }}
+                className="text-xs text-muted-foreground"
+              >
                 +201 since last hour
               </p>
             </CardContent>
           </Card>
         </div>
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-          <Card
-            className="xl:col-span-2" x-chunk="dashboard-01-chunk-4"
-          >
+          <Card className="xl:col-span-2" x-chunkf="dashboard-01-chunk-4">
             <CardHeader className="flex flex-row items-center">
               <div className="grid gap-2">
-                <CardTitle>Transactions</CardTitle>
-                <CardDescription>
-                  Recent transactions from your store.
-                </CardDescription>
+                <CardTitle>Students List</CardTitle>
+                <CardDescription>find Students by name.</CardDescription>
               </div>
               <Button asChild size="sm" className="ml-auto gap-1">
                 <Link href="#">
@@ -154,7 +171,7 @@ export default function Dashboard() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Customer</TableHead>
+                    <TableHead>Students</TableHead>
                     <TableHead className="hidden xl:table-column">
                       Type
                     </TableHead>
@@ -164,16 +181,14 @@ export default function Dashboard() {
                     <TableHead className="hidden xl:table-column">
                       Date
                     </TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead className="text-right">Scores</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Liam Johnson</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        liam@example.com
-                      </div>
+                      <div className="font-medium">Aditya bhai</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline"></div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
                       Sale
@@ -190,7 +205,7 @@ export default function Dashboard() {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Olivia Smith</div>
+                      <div className="font-medium">Hardik bhai</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
                         olivia@example.com
                       </div>
@@ -210,9 +225,9 @@ export default function Dashboard() {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Noah Williams</div>
+                      <div className="font-medium">Shreya Madam</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        noah@example.com
+                        @example.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
@@ -230,7 +245,7 @@ export default function Dashboard() {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Emma Brown</div>
+                      <div className="font-medium">Preksha Madam</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
                         emma@example.com
                       </div>
@@ -250,7 +265,9 @@ export default function Dashboard() {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Liam Johnson</div>
+                      <div className="font-medium">
+                        Surabhi and Twinkle Madam
+                      </div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
                         liam@example.com
                       </div>
@@ -357,5 +374,5 @@ export default function Dashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }

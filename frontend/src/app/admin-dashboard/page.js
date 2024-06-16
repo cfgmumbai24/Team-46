@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -7,16 +7,24 @@ import '@/utils/chartConfig';
 import {
   Activity,
   ArrowUpRight,
-  CircleUser,
-  CreditCard,
   DollarSign,
-  Menu,
-  Package2,
-  Search,
   Users,
+  CreditCard
 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-const pieData = (grade) => ({
+const pieData1 = (grade) => ({
   labels: ['1', '2', '3', '4', '5'],
   datasets: [
     {
@@ -90,9 +98,7 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card x-chunk="dashboard-01-chunk-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Students
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total Students</CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -101,9 +107,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in First Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in First Standard</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -112,9 +116,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in Second Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in Second Standard</CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -123,9 +125,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-3">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in Third Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in Third Standard</CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -134,6 +134,7 @@ export default function Dashboard() {
           </Card>
         </div>
 
+        <div className="grid gap-4 md:gap-8 lg:grid-rows-2 xl:grid-rows-3">
         <div className="grid gap-4 md:gap-8 lg:grid-rows-2 xl:grid-rows-3">
           <Card className="xl:col-span-2" x-chunk="dashboard-01-chunk-4">
             <CardHeader className="flex flex-row items-center">
@@ -153,15 +154,9 @@ export default function Dashboard() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Students</TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Type
-                    </TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Status
-                    </TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Date
-                    </TableHead>
+                    <TableHead className="hidden xl:table-column">Type</TableHead>
+                    <TableHead className="hidden xl:table-column">Status</TableHead>
+                    <TableHead className="hidden xl:table-column">Date</TableHead>
                     <TableHead className="text-right">Scores</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -211,6 +206,7 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
+        </div>
         </div>
       </main>
     </div>

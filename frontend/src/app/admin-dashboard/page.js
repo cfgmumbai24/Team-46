@@ -40,6 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useEffect } from "react";
 
 let info = axios
   .get("http://localhost:3000/admin-dashboard")
@@ -50,6 +51,12 @@ let info = axios
 console.log(info.Parameters);
 
 export default function Dashboard() {
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/user/").then((response) => {
+      console.log(response);
+    });
+  
+  }, []);
   return (
     <div className="flex min-h-screen w-full flex-col mt-20">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">

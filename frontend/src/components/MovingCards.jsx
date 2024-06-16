@@ -1,9 +1,7 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState, useRef } from "react";
-
 
 export const InfiniteMovingCards = ({
   direction = "left",
@@ -14,19 +12,15 @@ export const InfiniteMovingCards = ({
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 
-
   useEffect(() => {
     addAnimation();
   }, []);
 
-
   const [start, setStart] = useState(false);
-
 
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
 
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
@@ -35,13 +29,11 @@ export const InfiniteMovingCards = ({
         }
       });
 
-
       getDirection();
       getSpeed();
       setStart(true);
     }
   }
-
 
   const getDirection = () => {
     if (containerRef.current) {
@@ -59,7 +51,6 @@ export const InfiniteMovingCards = ({
     }
   };
 
-
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
@@ -72,7 +63,6 @@ export const InfiniteMovingCards = ({
     }
   };
 
-
   // Hardcoded testimonies of students and parents with sample images
   const testimonies = [
     {
@@ -80,24 +70,26 @@ export const InfiniteMovingCards = ({
         "My daughter's confidence has soared since joining VOPA. She now enjoys reading aloud and participating in class activities.",
       name: "Jane Doe",
       title: "Parent",
-      image: "https://th.bing.com/th/id/OIP.yXZGQbeSHhRLR8a_D9M9PQHaHa?pid=ImgDet&w=474&h=474&rs=1",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMPfhiWV60nxaEQ5Wtczkx-nFFJoAiGpgdjQ&s",
     },
     {
       quote:
         "As a student, VOPA has provided me with invaluable opportunities to improve my communication skills and gain confidence in public speaking.",
       name: "John Smith",
       title: "Student",
-      image: "https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-PNG-Photos.png",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD7EGbhJJNum7YGY1Ku1IjHA48AxyM8pnU5A&s",
     },
     {
       quote:
         "VOPA's supportive environment has helped my child excel academically and socially. I'm grateful for the positive impact it has had on our family.",
       name: "Mark Johnson",
       title: "Parent",
-      image: "https://th.bing.com/th/id/OIP.x0eNJQ9KT55BXOd68pE7-QHaHa?w=500&h=500&rs=1&pid=ImgDetMain",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFk5KpJ2q7a3_l_y437xcSvINypg5g5235-w&s",
     },
   ];
-
 
   return (
     <div
@@ -154,5 +146,3 @@ export const InfiniteMovingCards = ({
     </div>
   );
 };
-
-

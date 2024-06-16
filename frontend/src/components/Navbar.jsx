@@ -45,7 +45,7 @@ export function Navbar({ className }) {
               <HoveredLink href="/speech">speech</HoveredLink>
               <HoveredLink href="/maths">maths</HoveredLink>
               <HoveredLink href="/user-dashboard">User dashboard</HoveredLink>
-              <HoveredLink href="/admin-dashboard">Admin dashboard</HoveredLink>
+              {/* <HoveredLink href="/admin-dashboard">Admin dashboard</HoveredLink> */}
               {/* <HoveredLink href="https://vopa.in/">
                 Our Main Website
               </HoveredLink> */}

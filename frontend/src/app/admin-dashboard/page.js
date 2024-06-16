@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import axios from "axios";
 import { Pie } from 'react-chartjs-2';
@@ -6,16 +6,24 @@ import '@/utils/chartConfig';
 import {
   Activity,
   ArrowUpRight,
-  CircleUser,
-  CreditCard,
   DollarSign,
-  Menu,
-  Package2,
-  Search,
   Users,
+  CreditCard
 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-const pieData = (grade) => ({
+const pieData1 = (grade) => ({
   labels: ['1', '2', '3', '4', '5'],
   datasets: [
     {
@@ -40,35 +48,64 @@ const pieData = (grade) => ({
   ],
 });
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+const pieData2 = (grade) => ({
+  labels: ['1', '2', '3', '4', '5'],
+  datasets: [
+    {
+      label: `Grade ${grade} Distribution`,
+      data: [10, 13, 3, 11, 4], // Example data
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+});
 
+const pieData3 = (grade) => ({
+  labels: ['1', '2', '3', '4', '5'],
+  datasets: [
+    {
+      label: `Grade ${grade} Distribution`,
+      data: [14, 19, 23, 15, 2], // Example data
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+});
+
+// Determine which pieData function to use
+const pieData = (grade) => {
+  if (grade === 1) return pieData1(grade);
+  if (grade === 2) return pieData2(grade);
+  return pieData3(grade);
+};
+
+// Fetching data from API
 let info = axios
   .get("http://localhost:3000/admin-dashboard")
   .then(function (response) {
@@ -84,9 +121,7 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card x-chunk="dashboard-01-chunk-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Students
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total Students</CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -95,9 +130,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in First Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in First Standard</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -106,9 +139,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in Second Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in Second Standard</CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -117,9 +148,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-3">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Students in Third Standard
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Students in Third Standard</CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -128,12 +157,12 @@ export default function Dashboard() {
           </Card>
         </div>
 
-   <div className="grid gap-4 md:gap-8 lg:grid-rows-2 xl:grid-rows-3">
+        <div className="grid gap-4 md:gap-8 lg:grid-rows-2 xl:grid-rows-3">
           <Card className="xl:col-span-2" x-chunk="dashboard-01-chunk-4">
             <CardHeader className="flex flex-row items-center">
               <div className="grid gap-2">
                 <CardTitle>Students List</CardTitle>
-                <CardDescription>find Students by name.</CardDescription>
+                <CardDescription>Find Students by name.</CardDescription>
               </div>
               <Button asChild size="sm" className="ml-auto gap-1">
                 <Link href="#">
@@ -147,15 +176,9 @@ export default function Dashboard() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Students</TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Type
-                    </TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Status
-                    </TableHead>
-                    <TableHead className="hidden xl:table-column">
-                      Date
-                    </TableHead>
+                    <TableHead className="hidden xl:table-column">Type</TableHead>
+                    <TableHead className="hidden xl:table-column">Status</TableHead>
+                    <TableHead className="hidden xl:table-column">Date</TableHead>
                     <TableHead className="text-right">Scores</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -165,21 +188,13 @@ export default function Dashboard() {
                       <div className="font-medium">
                         <Link href="/user-dashboard">Aditya Kumar</Link>
                       </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        aditya@gmail.com
-                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">aditya@gmail.com</div>
                     </TableCell>
+                    <TableCell className="hidden xl:table-column">Sale</TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Sale
+                      <Badge className="text-xs" variant="outline">Approved</Badge>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="outline">
-                        Approved
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-23
-                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">2023-06-23</TableCell>
                     <TableCell className="text-right">250.00</TableCell>
                   </TableRow>
                   <TableRow>
@@ -187,21 +202,13 @@ export default function Dashboard() {
                       <div className="font-medium">
                         <Link href="/user-dashboard">Hardik Garg</Link>
                       </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        hardik@gmail.com
-                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">hardik@gmail.com</div>
                     </TableCell>
+                    <TableCell className="hidden xl:table-column">Refund</TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Refund
+                      <Badge className="text-xs" variant="outline">Declined</Badge>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="outline">
-                        Declined
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-24
-                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">2023-06-24</TableCell>
                     <TableCell className="text-right">150.00</TableCell>
                   </TableRow>
                   <TableRow>
@@ -209,21 +216,13 @@ export default function Dashboard() {
                       <div className="font-medium">
                         <Link href="/user-dashboard">Shreya</Link>
                       </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        shreya@gmail.com
-                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">shreya@gmail.com</div>
                     </TableCell>
+                    <TableCell className="hidden xl:table-column">Subscription</TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Subscription
+                      <Badge className="text-xs" variant="outline">Approved</Badge>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="outline">
-                        Approved
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-25
-                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">2023-06-25</TableCell>
                     <TableCell className="text-right">350.00</TableCell>
                   </TableRow>
                   <TableRow>
@@ -231,21 +230,13 @@ export default function Dashboard() {
                       <div className="font-medium">
                         <Link href="/user-dashboard">Preksha Jain</Link>
                       </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        preksha@example.com
-                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">preksha@example.com</div>
                     </TableCell>
+                    <TableCell className="hidden xl:table-column">Sale</TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Sale
+                      <Badge className="text-xs" variant="outline">Approved</Badge>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="outline">
-                        Approved
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-26
-                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">2023-06-26</TableCell>
                     <TableCell className="text-right">450.00</TableCell>
                   </TableRow>
                   <TableRow>
@@ -253,21 +244,13 @@ export default function Dashboard() {
                       <div className="font-medium">
                         <Link href="/user-dashboard">Twinkle Dhingra</Link>
                       </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        twinkle@example.com
-                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">twinkle@example.com</div>
                     </TableCell>
+                    <TableCell className="hidden xl:table-column">Sale</TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Sale
+                      <Badge className="text-xs" variant="outline">Approved</Badge>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="outline">
-                        Approved
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-27
-                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">2023-06-27</TableCell>
                     <TableCell className="text-right">550.00</TableCell>
                   </TableRow>
                 </TableBody>
@@ -295,9 +278,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </div>
-    </main>
-
-</div>
-       
+      </main>
+    </div>
   );
 }

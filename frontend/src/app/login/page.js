@@ -57,7 +57,7 @@ export default function Signup() {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
-              Enter your email below to sign up for an account
+              Enter your email below to login for an account
             </p>
           </div>
           <div className="grid gap-4">
@@ -93,16 +93,16 @@ export default function Signup() {
             {error && <p className="text-red-500 text-sm">{error}</p>}
             {success && <p className="text-green-500 text-sm">{success}</p>}
             <Button type="submit" className="w-full">
-              Signup
+              Login
             </Button>
             <Button variant="outline" className="w-full">
-              Signup with Google
+              Login with Google
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="/login" className="underline">
-              Login
+            <Link href="/signup" className="underline">
+              Signup
             </Link>
           </div>
         </form>

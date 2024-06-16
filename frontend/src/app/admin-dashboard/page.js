@@ -21,10 +21,10 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+// import { Input } from "@/components/ui/input";
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-const pieData1 = (grade) => ({
+const pieData = (grade) => ({
   labels: ['1', '2', '3', '4', '5'],
   datasets: [
     {
@@ -49,16 +49,10 @@ const pieData1 = (grade) => ({
   ],
 });
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+// // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Badge } from "@/components/ui/badge";
+// import { Button } from "@/components/ui/button";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -187,7 +181,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card x-chunk="dashboard-01-chunk-5">
+          {/* <Card x-chunk="dashboard-01-chunk-5">
             <CardHeader>
               <CardTitle>Student Analysis</CardTitle>
             </CardHeader>
@@ -205,7 +199,7 @@ export default function Dashboard() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
         </div>
       </main>

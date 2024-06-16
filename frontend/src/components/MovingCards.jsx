@@ -1,9 +1,7 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState, useRef } from "react";
-
 
 export const InfiniteMovingCards = ({
   direction = "left",
@@ -14,19 +12,15 @@ export const InfiniteMovingCards = ({
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 
-
   useEffect(() => {
     addAnimation();
   }, []);
 
-
   const [start, setStart] = useState(false);
-
 
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
 
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
@@ -35,13 +29,11 @@ export const InfiniteMovingCards = ({
         }
       });
 
-
       getDirection();
       getSpeed();
       setStart(true);
     }
   }
-
 
   const getDirection = () => {
     if (containerRef.current) {
@@ -59,7 +51,6 @@ export const InfiniteMovingCards = ({
     }
   };
 
-
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
@@ -71,7 +62,6 @@ export const InfiniteMovingCards = ({
       }
     }
   };
-
 
   // Hardcoded testimonies of students and parents with sample images
   const testimonies = [
@@ -97,7 +87,6 @@ export const InfiniteMovingCards = ({
       image: "https://static.vecteezy.com/system/resources/previews/001/609/747/large_2x/man-face-avatar-cartoon-free-vector.jpg",
     },
   ];
-
 
   return (
     <div
@@ -154,5 +143,3 @@ export const InfiniteMovingCards = ({
     </div>
   );
 };
-
-

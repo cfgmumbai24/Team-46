@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 const SpeechRecognitionComponent = () => {
   const [arr, setArray] = useState(["item1", "item2", "item3", "item4", "item5", "item6"]);
@@ -27,7 +26,7 @@ const SpeechRecognitionComponent = () => {
     if (arr.length === 0) {
       const response = await axios.post("http://localhost:8000/api/update", {
         newLevel: "string",
-        newScore: arr
+        newScore: output
       },  { headers: {
         'Content-Type': 'application/json;charset=UTF-8',
         "Access-Control-Allow-Origin": "*",

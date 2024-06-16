@@ -60,10 +60,10 @@ async function handleAuthentication(req,res){
 }
 
 async function handleUpdate(req, res) {
-  const { userId } = req;
+  // const { userId } = req;
   const { newLevel, newScore } = req.body;  // Expecting arrays for new levels and scores
   try {
-    const user = await User.findById(userId.userId);
+    const user = await User.findById("666df56271c27a37294ac34e");
     console.log(user);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

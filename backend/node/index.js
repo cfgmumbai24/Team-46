@@ -33,8 +33,16 @@ app.get('/api/allusers', async (req, res) => {
     res.status(500).json({ message: 'Error retrieving users', error: err });
   }
 });
+app.get('/api/specificUser', async (req, res) => {
+  try {
+    const users = await User.find({_id:"666df56271c27a37294ac34e"}); // Retrieve all users from the database
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'Error retrieving users', error: err });
+  }
+});
 app.use("/api/user",userRouter);
-app.use("/api/update",validateToken,userUpdateRouter);
+app.use("/api/update",userUpdateRouter);
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

@@ -51,37 +51,7 @@ console.log(info.Parameters);
 
 export default function Dashboard() {
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <form className="ml-auto flex-1 sm:flex-initial">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-              />
-            </div>
-          </form>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </header>
+    <div className="flex min-h-screen w-full flex-col mt-20">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card x-chunk="dashboard-01-chunk-0">
@@ -187,8 +157,12 @@ export default function Dashboard() {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Aditya bhai</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline"></div>
+                      <div className="font-medium">
+                        <Link href="/user-dashboard">Aditya Kumar</Link>
+                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        aditya@gmail.com
+                      </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
                       Sale
@@ -201,13 +175,15 @@ export default function Dashboard() {
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-23
                     </TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
+                    <TableCell className="text-right">250.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Hardik bhai</div>
+                      <div className="font-medium">
+                        <Link href="/user-dashboard">Hardik Garg</Link>
+                      </div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        olivia@example.com
+                        hardik@gmail.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
@@ -221,13 +197,15 @@ export default function Dashboard() {
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-24
                     </TableCell>
-                    <TableCell className="text-right">$150.00</TableCell>
+                    <TableCell className="text-right">150.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Shreya Madam</div>
+                      <div className="font-medium">
+                        <Link href="/user-dashboard">Shreya</Link>
+                      </div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        @example.com
+                        shreya@gmail.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
@@ -241,13 +219,15 @@ export default function Dashboard() {
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-25
                     </TableCell>
-                    <TableCell className="text-right">$350.00</TableCell>
+                    <TableCell className="text-right">350.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Preksha Madam</div>
+                      <div className="font-medium">
+                        <Link href="/user-dashboard">Preksha Jain</Link>
+                      </div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        emma@example.com
+                        preksha@example.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
@@ -261,15 +241,15 @@ export default function Dashboard() {
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-26
                     </TableCell>
-                    <TableCell className="text-right">$450.00</TableCell>
+                    <TableCell className="text-right">450.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <div className="font-medium">
-                        Surabhi and Twinkle Madam
+                        <Link href="/user-dashboard">Twinkle Dhingra</Link>
                       </div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        liam@example.com
+                        twinkle@example.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
@@ -283,7 +263,7 @@ export default function Dashboard() {
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-27
                     </TableCell>
-                    <TableCell className="text-right">$550.00</TableCell>
+                    <TableCell className="text-right">550.00</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -291,7 +271,7 @@ export default function Dashboard() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-5">
             <CardHeader>
-              <CardTitle>Recent Sales</CardTitle>
+              <CardTitle>Recent Students</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-8">
               <div className="flex items-center gap-4">
@@ -307,7 +287,7 @@ export default function Dashboard() {
                     olivia.martin@email.com
                   </p>
                 </div>
-                <div className="ml-auto font-medium">+$1,999.00</div>
+                <div className="ml-auto font-medium">+1,999.00</div>
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
@@ -322,7 +302,7 @@ export default function Dashboard() {
                     jackson.lee@email.com
                   </p>
                 </div>
-                <div className="ml-auto font-medium">+$39.00</div>
+                <div className="ml-auto font-medium">+39.00</div>
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
@@ -337,7 +317,7 @@ export default function Dashboard() {
                     isabella.nguyen@email.com
                   </p>
                 </div>
-                <div className="ml-auto font-medium">+$299.00</div>
+                <div className="ml-auto font-medium">+299.00</div>
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
@@ -352,7 +332,7 @@ export default function Dashboard() {
                     will@email.com
                   </p>
                 </div>
-                <div className="ml-auto font-medium">+$99.00</div>
+                <div className="ml-auto font-medium">+99.00</div>
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
@@ -367,7 +347,7 @@ export default function Dashboard() {
                     sofia.davis@email.com
                   </p>
                 </div>
-                <div className="ml-auto font-medium">+$39.00</div>
+                <div className="ml-auto font-medium">+39.00</div>
               </div>
             </CardContent>
           </Card>

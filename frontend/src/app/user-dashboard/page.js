@@ -1,11 +1,11 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { ResponsiveLine } from "@nivo/line"
-import { ResponsiveBar } from "@nivo/bar"
-import { ResponsivePie } from "@nivo/pie"
-import { ResponsiveScatterPlot } from "@nivo/scatterplot"
-import Link from "next/link"
+"use client";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveBar } from "@nivo/bar";
+import { ResponsivePie } from "@nivo/pie";
+import { ResponsiveScatterPlot } from "@nivo/scatterplot";
+import Link from "next/link";
 
 export default function Component() {
   return (
@@ -18,9 +18,9 @@ export default function Component() {
           <CardHeader>
             <CardTitle>Progresss Over Time</CardTitle>
             <div className="flex space-x-4">
-            <div>Red 🔴: Level 1  </div>
-            <div>Green 🟢: Level 2  </div>
-            <div>Blue 🔵: Level 3  </div>
+              <div>Red 🔴: Level 1 </div>
+              <div>Green 🟢: Level 2 </div>
+              <div>Blue 🔵: Level 3 </div>
             </div>
           </CardHeader>
           <CardContent>
@@ -36,7 +36,7 @@ export default function Component() {
           </CardContent>
         </Card>
         <Card className="col-span-1 lg:col-span-2">
-        <div className="flex flex-col items-center justify-center h-full gap-4">
+          <div className="flex flex-col items-center justify-center h-full gap-4">
             <h2 className="text-4xl font-medium">Analysis and Retest</h2>
             <div className="flex flex-row items-center justify-center gap-4">
               <Link
@@ -53,15 +53,22 @@ export default function Component() {
               >
                 Retest
               </Link>
-              </div>
+              <Link
+                href="/remedies"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                prefetch={false}
+              >
+                Remedies
+              </Link>
             </div>
+          </div>
         </Card>
         <Card>
           <CardHeader>
             <CardTitle>Device Information</CardTitle>
             <div className="flex space-x-4">
-            <div>Red 🔴: Mobile </div>
-            <div>Blue 🔵: Desktop </div>
+              <div>Red 🔴: Mobile </div>
+              <div>Blue 🔵: Desktop </div>
             </div>
           </CardHeader>
           <CardContent>
@@ -70,7 +77,7 @@ export default function Component() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
 
 function BarChart(props) {
@@ -123,9 +130,8 @@ function BarChart(props) {
         ariaLabel="A bar chart showing data"
       />
     </div>
-  )
+  );
 }
-
 
 function DotChart(props) {
   return (
@@ -193,90 +199,88 @@ function DotChart(props) {
         role="application"
       />
     </div>
-  )
+  );
 }
 
-
 function LineChart(props) {
-    return (
-      <div {...props}>
-        <ResponsiveLine
-          data={[
-            {
-              id: "Desktop",
-              data: [
-                { x: "Jan", y: 43 },
-                { x: "Feb", y: 137 },
-                { x: "Mar", y: 61 },
-                { x: "Apr", y: 145 },
-                { x: "May", y: 26 },
-                { x: "Jun", y: 154 },
-              ],
+  return (
+    <div {...props}>
+      <ResponsiveLine
+        data={[
+          {
+            id: "Desktop",
+            data: [
+              { x: "Jan", y: 43 },
+              { x: "Feb", y: 137 },
+              { x: "Mar", y: 61 },
+              { x: "Apr", y: 145 },
+              { x: "May", y: 26 },
+              { x: "Jun", y: 154 },
+            ],
+          },
+          {
+            id: "Mobile",
+            data: [
+              { x: "Jan", y: 60 },
+              { x: "Feb", y: 48 },
+              { x: "Mar", y: 177 },
+              { x: "Apr", y: 78 },
+              { x: "May", y: 96 },
+              { x: "Jun", y: 204 },
+            ],
+          },
+          {
+            id: "Tablet",
+            data: [
+              { x: "Jan", y: 80 },
+              { x: "Feb", y: 120 },
+              { x: "Mar", y: 100 },
+              { x: "Apr", y: 130 },
+              { x: "May", y: 70 },
+              { x: "Jun", y: 190 },
+            ],
+          },
+        ]}
+        margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
+        xScale={{ type: "point" }}
+        yScale={{ type: "linear" }}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 16,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickValues: 5,
+          tickPadding: 16,
+        }}
+        colors={["#2563eb", "#e11d48", "#10b981"]}
+        pointSize={6}
+        useMesh={true}
+        gridYValues={6}
+        theme={{
+          tooltip: {
+            chip: {
+              borderRadius: "9999px",
             },
-            {
-              id: "Mobile",
-              data: [
-                { x: "Jan", y: 60 },
-                { x: "Feb", y: 48 },
-                { x: "Mar", y: 177 },
-                { x: "Apr", y: 78 },
-                { x: "May", y: 96 },
-                { x: "Jun", y: 204 },
-              ],
+            container: {
+              fontSize: "12px",
+              textTransform: "capitalize",
+              borderRadius: "6px",
             },
-            {
-              id: "Tablet",
-              data: [
-                { x: "Jan", y: 80 },
-                { x: "Feb", y: 120 },
-                { x: "Mar", y: 100 },
-                { x: "Apr", y: 130 },
-                { x: "May", y: 70 },
-                { x: "Jun", y: 190 },
-              ],
+          },
+          grid: {
+            line: {
+              stroke: "#f3f4f6",
             },
-          ]}
-          margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
-          xScale={{ type: "point" }}
-          yScale={{ type: "linear" }}
-          axisTop={null}
-          axisRight={null}
-          axisBottom={{
-            tickSize: 0,
-            tickPadding: 16,
-          }}
-          axisLeft={{
-            tickSize: 0,
-            tickValues: 5,
-            tickPadding: 16,
-          }}
-          colors={["#2563eb", "#e11d48", "#10b981"]}
-          pointSize={6}
-          useMesh={true}
-          gridYValues={6}
-          theme={{
-            tooltip: {
-              chip: {
-                borderRadius: "9999px",
-              },
-              container: {
-                fontSize: "12px",
-                textTransform: "capitalize",
-                borderRadius: "6px",
-              },
-            },
-            grid: {
-              line: {
-                stroke: "#f3f4f6",
-              },
-            },
-          }}
-          role="application"
-        />
-      </div>
-    )
-  }
-
+          },
+        }}
+        role="application"
+      />
+    </div>
+  );
+}
 
 function PieChart(props) {
   return (
@@ -321,5 +325,5 @@ function PieChart(props) {
         role="application"
       />
     </div>
-  )
+  );
 }

@@ -44,8 +44,8 @@ export function Navbar({ className }) {
             <div className="flex flex-col space-y-4 text-sm">
               <HoveredLink href="/speech">speech</HoveredLink>
               <HoveredLink href="/maths">maths</HoveredLink>
-              <HoveredLink href="/user-dashboard">dashboard</HoveredLink>
-              {/* <HoveredLink href="/seo">Search Engine Optimization</HoveredLink> */}
+              <HoveredLink href="/user-dashboard">User dashboard</HoveredLink>
+              <HoveredLink href="/admin-dashboard">Admin dashboard</HoveredLink>
               {/* <HoveredLink href="https://vopa.in/">
                 Our Main Website
               </HoveredLink> */}
@@ -85,7 +85,7 @@ export function Navbar({ className }) {
           </MenuItem>
           <MenuItem setActive={setActive} active={active} item="Coming Soon...">
             <div className="flex flex-col space-y-4 text-sm">
-              <HoveredLink href="/pricings">Hobby</HoveredLink>
+              <HoveredLink href="/pricings">see..</HoveredLink>
             </div>
           </MenuItem>
         </Menu>

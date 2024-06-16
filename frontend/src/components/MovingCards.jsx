@@ -80,21 +80,21 @@ export const InfiniteMovingCards = ({
         "My daughter's confidence has soared since joining VOPA. She now enjoys reading aloud and participating in class activities.",
       name: "Jane Doe",
       title: "Parent",
-      image: "https://th.bing.com/th/id/OIP.yXZGQbeSHhRLR8a_D9M9PQHaHa?pid=ImgDet&w=474&h=474&rs=1",
+      image: "https://static.vecteezy.com/system/resources/previews/001/609/739/large_2x/indian-girl-face-avatar-cartoon-free-vector.jpg",
     },
     {
       quote:
         "As a student, VOPA has provided me with invaluable opportunities to improve my communication skills and gain confidence in public speaking.",
-      name: "John Smith",
+      name: "Joanna Smith",
       title: "Student",
-      image: "https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-PNG-Photos.png",
+      image: "https://media.istockphoto.com/id/1211708821/vector/beauty-young-indian-woman-portraits-expression-face-comic-arab-girl-head-avatar-cartoon.jpg?s=612x612&w=0&k=20&c=0QiqwXwH2veHbf-rcS4258BoIpFaWs7wh7oyIaoD1-E=",
     },
     {
       quote:
         "VOPA's supportive environment has helped my child excel academically and socially. I'm grateful for the positive impact it has had on our family.",
       name: "Mark Johnson",
       title: "Parent",
-      image: "https://th.bing.com/th/id/OIP.x0eNJQ9KT55BXOd68pE7-QHaHa?w=500&h=500&rs=1&pid=ImgDetMain",
+      image: "https://static.vecteezy.com/system/resources/previews/001/609/747/large_2x/man-face-avatar-cartoon-free-vector.jpg",
     },
   ];
 

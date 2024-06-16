@@ -1,5 +1,8 @@
+"use client"
 import Link from "next/link";
 import axios from "axios";
+import { Pie } from 'react-chartjs-2';
+import '@/utils/chartConfig';
 import {
   Activity,
   ArrowUpRight,
@@ -11,6 +14,31 @@ import {
   Search,
   Users,
 } from "lucide-react";
+
+const pieData = (grade) => ({
+  labels: ['1', '2', '3', '4', '5'],
+  datasets: [
+    {
+      label: `Grade ${grade} Distribution`,
+      data: [12, 19, 3, 5, 2], // Example data
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+});
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -70,12 +98,6 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">45,231</div>
-              <p
-                style={{ color: "red" }}
-                className="text-xs text-muted-foreground"
-              >
-                +20.1% from last month
-              </p>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
@@ -87,12 +109,6 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">2350</div>
-              <p
-                style={{ color: "red" }}
-                className="text-xs text-muted-foreground"
-              >
-                +180.1% from last month
-              </p>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
@@ -104,12 +120,6 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">12,234</div>
-              <p
-                style={{ color: "red" }}
-                className="text-xs text-muted-foreground"
-              >
-                +19% from last month
-              </p>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-3">
@@ -121,17 +131,12 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">573</div>
-              <p
-                style={{ color: "red" }}
-                className="text-xs text-muted-foreground"
-              >
-                +201 since last hour
-              </p>
             </CardContent>
           </Card>
         </div>
-        <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-          <Card className="xl:col-span-2" x-chunkf="dashboard-01-chunk-4">
+
+   <div className="grid gap-4 md:gap-8 lg:grid-rows-2 xl:grid-rows-3">
+          <Card className="xl:col-span-2" x-chunk="dashboard-01-chunk-4">
             <CardHeader className="flex flex-row items-center">
               <div className="grid gap-2">
                 <CardTitle>Students List</CardTitle>
@@ -276,90 +281,30 @@ export default function Dashboard() {
               </Table>
             </CardContent>
           </Card>
+
           <Card x-chunk="dashboard-01-chunk-5">
             <CardHeader>
-              <CardTitle>Recent Students</CardTitle>
+              <CardTitle>Student Analysis</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-8">
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="/avatars/01.png" alt="Avatar" />
-                  <AvatarFallback>OM</AvatarFallback>
-                </Avatar>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
-                    Olivia Martin
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    olivia.martin@email.com
-                  </p>
-                </div>
-                <div className="ml-auto font-medium">+1,999.00</div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="/avatars/02.png" alt="Avatar" />
-                  <AvatarFallback>JL</AvatarFallback>
-                </Avatar>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
-                    Jackson Lee
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    jackson.lee@email.com
-                  </p>
-                </div>
-                <div className="ml-auto font-medium">+39.00</div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="/avatars/03.png" alt="Avatar" />
-                  <AvatarFallback>IN</AvatarFallback>
-                </Avatar>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
-                    Isabella Nguyen
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    isabella.nguyen@email.com
-                  </p>
-                </div>
-                <div className="ml-auto font-medium">+299.00</div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="/avatars/04.png" alt="Avatar" />
-                  <AvatarFallback>WK</AvatarFallback>
-                </Avatar>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
-                    William Kim
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    will@email.com
-                  </p>
-                </div>
-                <div className="ml-auto font-medium">+99.00</div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="/avatars/05.png" alt="Avatar" />
-                  <AvatarFallback>SD</AvatarFallback>
-                </Avatar>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
-                    Sofia Davis
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    sofia.davis@email.com
-                  </p>
-                </div>
-                <div className="ml-auto font-medium">+39.00</div>
+              <div className="flex items-center gap-4 ">
+                {[1, 2, 3].map((grade) => (
+                  <Card key={grade} className="w-1/3">
+                    <CardHeader>
+                      <CardTitle>Grade {grade} Student Analysis</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <Pie data={pieData(grade)} />
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </CardContent>
           </Card>
         </div>
-      </main>
-    </div>
+    </main>
+
+</div>
+       
   );
 }
